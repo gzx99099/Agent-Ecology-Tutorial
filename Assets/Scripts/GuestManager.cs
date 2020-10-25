@@ -77,6 +77,7 @@ public class GuestManager : MonoBehaviour
             //assign destination;
             guest.Destination = bath;
             bath.AddGuest(guest);
+            visited.Add(bath); //<-----Added this line, didn't work, after guest finshed 1 bath, destination become null.
             break;
         }
     }
