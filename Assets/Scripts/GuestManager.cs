@@ -55,11 +55,13 @@ public class GuestManager : MonoBehaviour
         GameObject guest = Instantiate(GuestPrefab, transform.position, Quaternion.identity); //adding our gameobject to scene
         _guest.Add(guest.GetComponent<Guest>()); //adding our gameobject guest script to the guest list
         Guest guestScript = guest.GetComponent<Guest>();
-        AssignOpenBath(guestScript);
+        Destination destination = _destinations[0];
+        AssignOpenBath(guestScript,destination);
     }
 
-    public void AssignOpenBath(Guest guest, List<Destination> visited = null)
+    public Destination AssignOpenBath(Guest guest, Destination destination)
     {
+        List<Destination> visited = null;
         foreach (Destination bath in _destinations)
         {
             //if bath is full guard statement
@@ -78,8 +80,9 @@ public class GuestManager : MonoBehaviour
             guest.Destination = bath;
             bath.AddGuest(guest);
             visited.Add(bath); //<-----Added this line, didn't work, after guest finshed 1 bath, destination become null.
-            break;
+            
         }
+        return destination;
     }
 
     // Update is called once per frame

@@ -55,7 +55,7 @@ public class Guest : MonoBehaviour
                 }
                 else //if guest needs new bath assigned
                 {
-                    GuestManager.Instance.AssignOpenBath(this); //Destination is assigned inside metho
+                    GuestManager.Instance.AssignOpenBath(this,Destination); //Destination is assigned inside metho
                 }
                 if (Destination == null) return;
 
