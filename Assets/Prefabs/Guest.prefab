@@ -132,5 +132,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Destination: {fileID: 0}
   Baths: 3
-  BathTime: 360
+  BathTime: 1
   Status: 0

@@ -64,7 +64,7 @@ public class Guest : MonoBehaviour
                 _destinations.RemoveAt(0); //remove current bath from destination list
                 _bathTime = 0; //reseting bath time
                 Status = Action.WALKING;  //start walking
-                UpdateDestination(); //update new destination
+                //*UpdateDestination();  <--- this line is not needed, since in the end of 'FindPath()', we will update destination anyway.
                 FindPath(); //finding best path
             }
 
@@ -183,19 +183,20 @@ public class Guest : MonoBehaviour
         }
 
         //if there are no conveyances, we update the destination list with current destination
+        //Zixuan.Gong:Refactor repeated Lines for Extra Credits.(Also Line 67 is not needed)
+        _destinations.Clear();
+
         if (_currentConveyance == null)
         {
-            _destinations.Clear();
             _destinations.Add(Destination);
-            UpdateDestination();
-            return;
         }
-
-        //update destinations
-        _destinations.Clear();
-        _destinations.Add(_currentConveyance.GetDestination());
-        _destinations.Add(Destination);
-        Destination = _destinations[0];
+        else
+        {
+            _destinations.Add(_currentConveyance.GetDestination());
+            _destinations.Add(Destination);
+            Destination = _destinations[0];
+        }
+        //update destinations                
         UpdateDestination();
     }
 
